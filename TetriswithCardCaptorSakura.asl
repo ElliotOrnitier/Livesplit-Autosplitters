@@ -122,7 +122,5 @@ split
 	if (settings["lightAndDark"] && current.lightAndDarkAnim == 156 && old.lightAndDarkAnim == 196 && current.storyValue == 524286) {
 		return true;
 		}		
-	print("current lightAndDarkAnim is " + current.lightAndDarkAnim);
-	print("current storyValue is " + current.storyValue);
 }
 
