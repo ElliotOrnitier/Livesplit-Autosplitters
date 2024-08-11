@@ -8,7 +8,7 @@ startup {
 	vars.Helper.Load = (Func<dynamic, bool>)(emu => 
 	{
 		emu.Make<int>("storyValue", 0x800E9434);
-		emu.Make<byte>("lightAndDarkAnim", 0x800C5F68);
+		emu.Make<byte>("cardAnimation", 0x800C5F68);
 		emu.Make<short>("startGame", 0x800E603E);
 		return true;
 	});
@@ -31,21 +31,13 @@ startup {
 	settings.Add("shield", true, "Shield");
 	settings.Add("watery", true, "Watery");
 	settings.Add("lightAndDark", true, "Light and Dark");
-}
 
-//update
-//{
-//	//Map
-//		current.storyValue = current.storyValue;
-//		current.startGame = current.startGame;
-//}
-onStart
-{
+	vars.iterator = 0;
+	vars.fireySplit = 0;
 }
 
 start
 {
-	//print("current startGame is " + current.startGame);
 	return current.startGame == 2048 && old.startGame != 2048;
 }
 
@@ -53,7 +45,7 @@ split
 {
 	if (settings["firey"] && current.storyValue == 2 && old.storyValue != 2) {
 		return true;
-		}
+	}
 
 	if (settings["sword"] && current.storyValue == 6 && old.storyValue != 6) {
 		return true;
@@ -119,7 +111,7 @@ split
 		return true;
 		}
 
-	if (settings["lightAndDark"] && current.lightAndDarkAnim == 156 && old.lightAndDarkAnim == 196 && current.storyValue == 524286) {
+	if (settings["lightAndDark"] && current.cardAnimation == 156 && old.cardAnimation == 196 && current.storyValue >= 524286) {
 		return true;
 		}		
 }
