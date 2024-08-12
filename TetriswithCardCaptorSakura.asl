@@ -9,8 +9,6 @@ startup {
 	{
 		emu.Make<int>("storyValue", 0x800E9434);
 		emu.Make<byte>("cardAnimation", 0x800C5F68);
-		emu.Make<byte>("cardAnimation2", 0x8000859E);
-		emu.Make<short>("cardAnimation3", 0x8000E2A8);
 		emu.Make<short>("startGame", 0x800E603E);
 		return true;
 	});
@@ -40,12 +38,6 @@ startup {
 start
 {
 	return current.startGame == 2048 && old.startGame != 2048;
-}
-
-onReset
-{
-	vars.finalSplit = 0;
-	vars.iterator = 0;
 }
 
 split
