@@ -2,7 +2,7 @@ state("LiveSplit") {}
 
 startup {
 
-	print("Tetris with Cardcaptor Sakura Eternal Heart Autospliter v1.0.1");
+	print("Tetris with Cardcaptor Sakura Eternal Heart Autospliter v1.0.2");
 
 	Assembly.Load(File.ReadAllBytes("Components/emu-help-v2")).CreateInstance("PS1");
 	
@@ -114,7 +114,7 @@ split
 		}
 
 	//This works for all three possible ending animations
-	if (settings["lightAndDark"] && current.storyValue >= 524286 && ((current.cardAnimation == 156 && old.cardAnimation == 196) || (current.cardAnimation == 192 && old.cardAnimation == 156))) {
+	if (settings["lightAndDark"] && current.storyValue >= 524286 && current.cardAnimation == 192 && old.cardAnimation == 156) {
 		if(vars.landdCount < 1) {
 			vars.landdCount = vars.landdCount + 1;
 		} else {
