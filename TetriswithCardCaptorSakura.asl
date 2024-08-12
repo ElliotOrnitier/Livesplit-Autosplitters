@@ -2,7 +2,7 @@ state("LiveSplit") {}
 
 startup {
 
-	print("Tetris with Cardcaptor Sakura Eternal Heart Autospliter v1.0.3");
+	print("[ELLIOT-DEBUG] => Tetris with Cardcaptor Sakura Eternal Heart Autospliter v1.0.4");
 
 	Assembly.Load(File.ReadAllBytes("Components/emu-help-v2")).CreateInstance("PS1");
 	
