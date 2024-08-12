@@ -1,6 +1,9 @@
 state("LiveSplit") {}
 
 startup {
+
+	print("Tetris with Cardcaptor Sakura Eternal Heart Autospliter v1.0.1");
+
 	Assembly.Load(File.ReadAllBytes("Components/emu-help-v2")).CreateInstance("PS1");
 	
 	vars.bitCheck = new Func<byte, int, bool>((byte val, int b) => (val & (1 << b)) != 0);
