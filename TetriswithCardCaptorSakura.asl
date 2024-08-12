@@ -2,7 +2,7 @@ state("LiveSplit") {}
 
 startup {
 
-	print("[ELLIOT-DEBUG] => Tetris with Cardcaptor Sakura Eternal Heart Autospliter v1.0.4");
+	print("[ELLIOT-DEBUG] => Tetris with Cardcaptor Sakura Eternal Heart Autospliter v1.0.5");
 
 	Assembly.Load(File.ReadAllBytes("Components/emu-help-v2")).CreateInstance("PS1");
 	
@@ -12,7 +12,7 @@ startup {
 	{
 		emu.Make<int>("storyValue", 0x800E9434);
 		emu.Make<byte>("cardAnimation", 0x800C5F68);
-		emu.Make<short>("startGame", 0x800E603E);
+		emu.Make<byte>("currentScreen", 0x800E5F50);
 		return true;
 	});
 
@@ -40,7 +40,8 @@ startup {
 
 start
 {
-	return current.startGame == 2048 && old.startGame != 2048;
+	//Should trigger when moving from start screen to map screen
+	return current.currentScreen == 32 && old.currentScreen == 31;
 }
 
 split
