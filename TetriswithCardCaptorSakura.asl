@@ -9,6 +9,8 @@ startup {
 	{
 		emu.Make<int>("storyValue", 0x800E9434);
 		emu.Make<byte>("cardAnimation", 0x800C5F68);
+		emu.Make<byte>("cardAnimation2", 0x8000859E);
+		emu.Make<short>("cardAnimation3", 0x8000E2A8);
 		emu.Make<short>("startGame", 0x800E603E);
 		return true;
 	});
@@ -32,13 +34,18 @@ startup {
 	settings.Add("watery", true, "Watery");
 	settings.Add("lightAndDark", true, "Light and Dark");
 
-	vars.iterator = 0;
-	vars.fireySplit = 0;
+	vars.landdCount = 0;
 }
 
 start
 {
 	return current.startGame == 2048 && old.startGame != 2048;
+}
+
+onReset
+{
+	vars.finalSplit = 0;
+	vars.iterator = 0;
 }
 
 split
@@ -111,8 +118,14 @@ split
 		return true;
 		}
 
-	if (settings["lightAndDark"] && current.cardAnimation == 156 && old.cardAnimation == 196 && current.storyValue >= 524286) {
+	//This works for all three possible ending animations
+	if (settings["lightAndDark"] && current.storyValue >= 524286 && ((current.cardAnimation == 156 && old.cardAnimation == 196) || (current.cardAnimation == 192 && old.cardAnimation == 156))) {
+		if(vars.landdCount < 1) {
+			vars.landdCount = vars.landdCount + 1;
+		} else {
+		print("lightAndDark split");
+		vars.landdCount = 0;
 		return true;
-		}		
+		}
+	}			
 }
-
